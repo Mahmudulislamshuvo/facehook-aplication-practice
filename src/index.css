@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  /* Fonts */
+  --font-inter: "Inter", sans-serif;
+
+  /* Colors */
+  --color-lwsGreen: #00d991;
+  --color-deepDark: #17181c;
+  --color-mediumDark: #1e1f24;
+  --color-lighterDark: #27292f;
+}
+
+/* Custom Container Configuration (from v3 config: center: true, padding: "1rem") */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* 2. Base Layer */
+@layer base {
+  body {
+    /* Now v4 knows what 'bg-deepDark' and 'font-inter' mean */
+    @apply bg-deepDark font-inter text-gray-100;
+  }
+}
+
+/* 2. Now your components will work */
+@layer components {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .btn-primary {
+    /* v4 resolves 'bg-lighterDark' from the @theme block above */
+    @apply flex items-center justify-center gap-2 rounded-md bg-lighterDark px-5 py-2.5 
+           text-sm font-medium text-white hover:bg-deepDark lg:text-lg;
+  }
+
+  .icon-btn {
+    @apply flex items-center justify-center rounded-md bg-lighterDark p-1.5 font-medium text-white hover:bg-deepDark;
+  }
+
+  .card {
+    /* Arbitrary values like border-[#3F3F3F] still work fine in v4 */
+    @apply rounded-md border border-[#3F3F3F] bg-mediumDark px-4 py-4 lg:px-7 lg:py-5;
+  }
+
+  .form-control {
+    @apply mb-6 space-y-2.5;
+  }
+
+  .auth-label {
+    @apply leading-[138%] lg:text-lg;
+  }
+
+  .auth-input {
+    @apply w-full rounded-md border border-[#CCCCCC]/14 bg-lighterDark p-1.5 focus:outline-none lg:p-3;
+  }
+
+  .post-avater {
+    @apply max-h-10 max-w-10 rounded-full lg:max-h-14.5 lg:max-w-14.5;
+  }
+
+  /* Action Modal */
+  .action-modal-container {
+    @apply rounded-md border border-[#3F3F3F] bg-mediumDark px-4  lg:px-7 lg:py-5 absolute right-full top-6 min-w-50 divide-y divide-[#3F3F3F] py-2 [&>button]:py-2;
+  }
+
+  .action-menu-item {
+    @apply flex w-full items-center gap-2 text-gray-100 transition-all;
+  }
+}
+
+/* Styles from App.css (Vite Boilerplate) - avoiding conflicts */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.read-the-docs {
+  color: #888;
+}
