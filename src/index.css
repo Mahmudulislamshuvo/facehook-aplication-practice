@@ -48,7 +48,7 @@
   }
 
   .form-control {
-    @apply mb-6 space-y-2.5;
+    @apply my-2 space-y-2.5;
   }
 
   .auth-label {
@@ -71,44 +71,4 @@
   .action-menu-item {
     @apply flex w-full items-center gap-2 text-gray-100 transition-all;
   }
-}
-
-/* Styles from App.css (Vite Boilerplate) - avoiding conflicts */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.read-the-docs {
-  color: #888;
 }
