@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
   const {
     register,
     formState: { errors },
@@ -10,6 +12,8 @@ const LoginForm = () => {
   } = useForm();
 
   const handleFormSubmit = (formData) => {
+    const user = { ...formData };
+    setAuth({ user });
     console.log(formData);
     navigate("/");
   };
