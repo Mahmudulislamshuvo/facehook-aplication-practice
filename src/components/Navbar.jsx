@@ -1,34 +1,37 @@
+import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.svg";
+import home from "../assets/icons/home.svg";
+import notification from "../assets/icons/notification.svg";
+
+import avatar_1 from "../assets/images/avatars//avatar_1.png";
+import Logout from "./common/Logout";
+
 const Navbar = () => {
   return (
     <>
-      <nav class="sticky top-0 z-50 border-b border-[#3F3F3F] bg-[#1E1F24] py-4">
-        <div class="container flex flex-col items-center justify-between gap-6 sm:flex-row">
+      <nav className="sticky top-0 z-50 border-b border-[#3F3F3F] bg-[#1E1F24] py-4">
+        <div className="container flex flex-col items-center justify-between gap-6 sm:flex-row">
           {/* <!-- Logo --> */}
-          <a href="./index.html">
-            <img
-              class="max-w-25 rounded-full lg:max-w-32.5"
-              src="./assets/images/logo.svg"
-            />
-          </a>
+          <Link to="/">
+            <img className="max-w-25 rounded-full lg:max-w-32.5" src={logo} />
+          </Link>
           {/* <!-- nav links  --> */}
 
-          <div class="flex items-center space-x-4">
-            <a href="./index.html" class="btn-primary">
-              <img src="./assets/icons/home.svg" alt="Home" />
+          <div className="flex items-center space-x-4">
+            <Link to="/" className="btn-primary">
+              <img src={home} alt="Home" />
               Home
-            </a>
-            <button class="icon-btn">
-              <img src="./assets/icons/notification.svg" alt="Notification" />
+            </Link>
+            <button className="icon-btn">
+              <img src={notification} alt="Notification" />
             </button>
-            <button class="icon-btn">
-              <img src="./assets/icons/logout.svg" alt="Logout" />
-            </button>
+            <Logout />
 
-            <button class="flex-center ml-8! gap-3">
-              <span class="text-lg font-medium lg:text-xl">Sumit</span>
+            <button className="flex-center ml-8! gap-3">
+              <span className="text-lg font-medium lg:text-xl">Sumit</span>
               <img
-                class="max-h-8 max-w-8 lg:max-h-11 lg:max-w-11"
-                src="./assets/images/avatars/avatar_1.png"
+                className="max-h-8 max-w-8 lg:max-h-11 lg:max-w-11"
+                src={avatar_1}
                 alt=""
               />
             </button>
