@@ -4,7 +4,10 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div
+      div
+      className="flex min-h-[70vh] flex-col items-center justify-center text-center px-4"
+    >
       {/* Icon */}
       <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#00C38B]/10">
         <svg
@@ -47,7 +50,7 @@ const NotFound = () => {
           Previous Page
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

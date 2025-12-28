@@ -5,11 +5,7 @@ const HomePage = () => {
   const { auth } = useAuth();
   console.log(auth);
 
-  return (
-    <>
-      <Navbar />
-    </>
-  );
+  return <>home</>;
 };
 
 export default HomePage;
