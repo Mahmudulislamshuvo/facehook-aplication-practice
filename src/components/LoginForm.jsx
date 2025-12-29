@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import axios from "axios";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -9,13 +10,37 @@ const LoginForm = () => {
     register,
     formState: { errors },
     handleSubmit,
+    setError,
   } = useForm();
 
-  const handleFormSubmit = (formData) => {
-    const user = { ...formData };
-    setAuth({ user });
-    console.log(formData);
-    navigate("/");
+  const handleFormSubmit = async (formData) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/auth/login`,
+        formData
+      );
+
+      if (response.status === 200) {
+        const { user, token } = response.data;
+        if (token) {
+          const authToken = token.token;
+          const refreshToken = token.refreshToken;
+
+          console.log("Auth Token:", authToken, "Refresh Token:", refreshToken);
+          // context populate with user and tokens
+          setAuth({ user, authToken, refreshToken });
+          navigate("/");
+        }
+      }
+
+      console.log(response.data);
+    } catch (error) {
+      setError("root.random", {
+        type: "random",
+        message: `${formData.email} not found or password incorrect`,
+      });
+      console.log(error);
+    }
   };
 
   return (
@@ -85,6 +110,12 @@ const LoginForm = () => {
               </p>
             )}
           </div>
+          {/* Print error */}
+          {errors.root?.random && (
+            <p className="text-sm text-red-500 animate-fadeIn">
+              {errors.root.random.message}
+            </p>
+          )}
           {/* <!-- Submit --> */}
           <button
             className="auth-input bg-lwsGreen font-bold text-deepDark transition-all hover:opacity-90"
