@@ -33,6 +33,7 @@ const useAxios = () => {
       );
 
       const { token } = response.data;
+      console.log("New Token:", token);
       // স্টেট আপডেট
       setAuth((prevAuth) => ({ ...prevAuth, authToken: token }));
 
@@ -72,7 +73,7 @@ const useAxios = () => {
     };
   }, []);
 
-  return api;
+  return { api };
 };
 
 export default useAxios;
@@ -141,3 +142,4 @@ export default useAxios;
 
 //   return api;
 // };
+// export default useAxios;

@@ -2,11 +2,13 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import home from "../assets/icons/home.svg";
 import notification from "../assets/icons/notification.svg";
-
 import avatar_1 from "../assets/images/avatars//avatar_1.png";
 import Logout from "./common/Logout";
+import { useAuth } from "../hooks/useAuth";
 
 const Navbar = () => {
+  const { auth } = useAuth();
+
   return (
     <>
       <nav className="sticky top-0 z-50 border-b border-[#3F3F3F] bg-[#1E1F24] py-4">
@@ -27,14 +29,17 @@ const Navbar = () => {
             </button>
             <Logout />
 
-            <button className="flex-center ml-8! gap-3">
-              <span className="text-lg font-medium lg:text-xl">Sumit</span>
+            <Link to={"/profile"} className="flex-center ml-8! gap-3">
+              <span className="text-lg font-medium lg:text-xl">
+                {auth?.user?.firstName}
+                {""} {auth?.user?.lastName}
+              </span>
               <img
                 className="max-h-8 max-w-8 lg:max-h-11 lg:max-w-11"
                 src={avatar_1}
                 alt=""
               />
-            </button>
+            </Link>
           </div>
           {/* <!-- nav links ends --> */}
         </div>
