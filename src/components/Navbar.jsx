@@ -2,12 +2,15 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import home from "../assets/icons/home.svg";
 import notification from "../assets/icons/notification.svg";
-import avatar_1 from "../assets/images/avatars//avatar_1.png";
 import Logout from "./common/Logout";
 import { useAuth } from "../hooks/useAuth";
+import { useProfile } from "../hooks/useProfile";
 
 const Navbar = () => {
   const { auth } = useAuth();
+  const { state } = useProfile();
+
+  const user = state?.user ?? auth?.user;
 
   return (
     <>
@@ -31,13 +34,13 @@ const Navbar = () => {
 
             <Link to={"/profile"} className="flex-center ml-8! gap-3">
               <span className="text-lg font-medium lg:text-xl">
-                {auth?.user?.firstName}
-                {""} {auth?.user?.lastName}
+                {user.firstName}
+                {""} {user.lastName}
               </span>
               <img
-                className="max-h-8 max-w-8 lg:max-h-11 lg:max-w-11"
-                src={avatar_1}
-                alt=""
+                className="h-8 w-8 lg:h-11 lg:w-11 rounded-full"
+                src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}`}
+                alt="avatar"
               />
             </Link>
           </div>

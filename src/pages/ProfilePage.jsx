@@ -1,28 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
+import { useProfile } from "../hooks/useProfile";
+import { actions } from "../actions";
+import Profile from "../components/Profile";
 
 const ProfilePage = () => {
-  const [user, setUser] = useState(null);
-  const [posts, setPosts] = useState([]);
+  const { state, dispatch } = useProfile();
 
   const { auth } = useAuth();
   const { api } = useAxios();
 
   useEffect(() => {
+    dispatch({ type: actions.profile.DATA_FATCHING });
+
     const fetchUserProfile = async () => {
       try {
         const response = await api.get(`/profile/${auth.user.id}`);
-        setUser(response?.data?.user);
+
+        if (response.status === 200) {
+          dispatch({
+            type: actions.profile.DATA_SUCCESS,
+            data: response.data,
+          });
+        }
       } catch (error) {
-        console.error("Error fetching user profile:", error);
+        dispatch({
+          type: actions.profile.DATA_FAIL,
+          error: error.message,
+        });
       }
     };
 
     fetchUserProfile();
   }, []);
 
-  return <div>{user?.firstName}</div>;
+  if (state?.loading) {
+    return <div>Loading...</div>;
+  }
+
+  return <Profile />;
 };
 
 export default ProfilePage;
