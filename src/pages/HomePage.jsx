@@ -1,11 +1,11 @@
-import Navbar from "../components/Navbar";
-import { useAuth } from "../hooks/useAuth";
+import Home from "../components/Home";
 
 const HomePage = () => {
-  const { auth } = useAuth();
-  console.log(auth);
-
-  return <>home</>;
+  return (
+    <div>
+      <Home />
+    </div>
+  );
 };
 
 export default HomePage;
