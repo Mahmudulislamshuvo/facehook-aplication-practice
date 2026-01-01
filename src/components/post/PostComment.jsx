@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { useAvatar } from "../../hooks/useAvatar";
 import PostCommentList from "./PostCommentList";
 
 const PostComments = ({ post }) => {
   const { avatarURL } = useAvatar(post);
+  const [toggleComments, setToggleComments] = useState(false);
 
   return (
     <div>
       <div className="flex-center mb-3 gap-2 lg:gap-4">
         <img
-          className="max-w-7 max-h-7 rounded-full lg:max-h-[34px] lg:max-w-[34px]"
+          className="max-w-7 max-h-7 rounded-full lg:max-h-8.5 lg:max-w-8.5"
           src={avatarURL}
           alt="avatar"
         />
@@ -16,7 +18,7 @@ const PostComments = ({ post }) => {
         <div className="flex-1">
           <input
             type="text"
-            className="h-8 w-full rounded-full bg-lighterDark px-4 text-xs focus:outline-none sm:h-[38px]"
+            className="h-8 w-full rounded-full bg-lighterDark px-4 text-xs focus:outline-none sm:h-9.5"
             name="post"
             id="post"
             placeholder="What's on your mind?"
@@ -24,10 +26,14 @@ const PostComments = ({ post }) => {
         </div>
       </div>
       <div className="mt-4">
-        <button className="text-gray-300 max-md:text-sm">All Comment ▾</button>
+        <button
+          className="text-gray-300 max-md:text-sm"
+          onClick={() => setToggleComments(!toggleComments)}
+        >
+          All Comment ▾
+        </button>
       </div>
-
-      <PostCommentList comments={post?.comments} />
+      {toggleComments && <PostCommentList comments={post?.comments} />}
     </div>
   );
 };
