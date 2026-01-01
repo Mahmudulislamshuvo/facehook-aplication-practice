@@ -3,7 +3,7 @@ import editIcon from "../../assets/icons/edit.svg";
 import { useRef } from "react";
 import useAxios from "../../hooks/useAxios";
 
-const PfofileImage = () => {
+const ProfileImage = () => {
   const { state, dispatch } = useProfile();
   const ImageButtonRef = useRef(null);
   const { api } = useAxios();
@@ -47,9 +47,9 @@ const PfofileImage = () => {
 
   return (
     <>
-      <div className="relative mb-8 max-h-44 max-w-44 rounded-full lg:mb-11 lg:max-h-56 lg:max-w-56">
+      <div className="relative mb-8 max-h-45 max-w-45 rounded-full lg:mb-11 lg:max-h-54.5 lg:max-w-54.5">
         <img
-          className="rounded-full h-56 w-56 object-cover"
+          className="rounded-full w-40 h-40 lg:w-56 lg:h-56 object-cover"
           src={`${import.meta.env.VITE_SERVER_BASE_URL}/${state.user.avatar}`}
           alt={`${state.user.firstName} ${state.user.lastName}`}
         />
@@ -69,4 +69,4 @@ const PfofileImage = () => {
   );
 };
 
-export default PfofileImage;
+export default ProfileImage;

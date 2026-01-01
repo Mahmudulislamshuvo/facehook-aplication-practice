@@ -4,12 +4,12 @@ import threeDotsIcon from "../../assets/icons/3dots.svg";
 import editIcon from "../../assets/icons/edit.svg";
 import deleteIcon from "../../assets/icons/delete.svg";
 import timeIcon from "../../assets/icons/time.svg";
+import { useAvatar } from "../../hooks/useAvatar";
 
-const PostHeader = () => {
+const PostHeader = ({ post }) => {
   const { state } = useProfile();
   const [toggle, setToggle] = useState(false);
-
-  console.log(state);
+  const { avatarURL } = useAvatar(post);
 
   return (
     <>
@@ -18,8 +18,7 @@ const PostHeader = () => {
         <div className="flex items-center gap-3">
           <img
             className="h-10 w-10 rounded-full lg:max-h-14 lg:max-w-14"
-            src={`${import.meta.env.VITE_SERVER_BASE_URL}/${state.user.avatar}`}
-            // src={state.user.avatar}
+            src={avatarURL}
             alt={state.user.firstName}
           />
           <div>

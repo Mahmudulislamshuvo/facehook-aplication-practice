@@ -1,5 +1,5 @@
 import { useProfile } from "../../hooks/useProfile";
-import PostList from "../posts/PostList";
+import PostList from "../post/PostList";
 
 const MyPosts = () => {
   const { state } = useProfile();

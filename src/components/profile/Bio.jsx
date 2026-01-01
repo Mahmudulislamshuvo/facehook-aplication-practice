@@ -37,7 +37,7 @@ const Bio = () => {
       <div className="mt-4 flex items-start gap-2 lg:mt-6">
         <div className="flex-1">
           {!editBioMode ? (
-            <p className="leading-relaxed text-gray-400 lg:text-lg">
+            <p className="leading-[188%] text-gray-400 lg:text-lg">
               {state.user.bio ? state.user.bio : "No bio available."}
             </p>
           ) : (
