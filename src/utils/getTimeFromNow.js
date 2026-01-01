@@ -1,7 +1,12 @@
 export function getTimeFromNow(dateString) {
-  const diff = Date.now() - new Date(dateString).getTime();
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "";
+
+  const diff = Date.now() - date.getTime();
 
   const m = Math.floor(diff / 60000);
+  if (m < 1) return "Just now";
   if (m < 60) return `${m}m`;
 
   const h = Math.floor(m / 60);

@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { useProfile } from "../../hooks/useProfile";
+// import { useProfile } from "../../hooks/useProfile";
 import threeDotsIcon from "../../assets/icons/3dots.svg";
 import editIcon from "../../assets/icons/edit.svg";
 import deleteIcon from "../../assets/icons/delete.svg";
 import timeIcon from "../../assets/icons/time.svg";
 import { useAvatar } from "../../hooks/useAvatar";
+import { getTimeFromNow } from "../../utils/getTimeFromNow";
 
 const PostHeader = ({ post }) => {
-  const { state } = useProfile();
+  // const { state } = useProfile();
   const [toggle, setToggle] = useState(false);
   const { avatarURL } = useAvatar(post);
 
@@ -19,14 +20,14 @@ const PostHeader = ({ post }) => {
           <img
             className="h-10 w-10 rounded-full lg:max-h-14 lg:max-w-14"
             src={avatarURL}
-            alt={state.user.firstName}
+            alt={post.author.name}
           />
           <div>
-            <h6 className="text-lg lg:text-xl">{state.user.firstName}</h6>
+            <h6 className="text-lg lg:text-xl">{post.author.name}</h6>
             <div className="flex items-center gap-1.5">
               <img src={timeIcon} alt="time" />
               <span className="text-sm text-gray-400 lg:text-base">
-                {"createdAt"}
+                {`${getTimeFromNow(post.createAt)} ago`}
               </span>
             </div>
           </div>
