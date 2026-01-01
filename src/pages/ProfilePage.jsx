@@ -4,6 +4,7 @@ import useAxios from "../hooks/useAxios";
 import { useProfile } from "../hooks/useProfile";
 import { actions } from "../actions";
 import Profile from "../components/Profile";
+import ProfileSkeleton from "../components/skeleton/ProfileSkeleton";
 
 const ProfilePage = () => {
   const { state, dispatch } = useProfile();
@@ -36,10 +37,10 @@ const ProfilePage = () => {
   }, []);
 
   if (state?.loading) {
-    return <div>Loading...</div>;
+    return <ProfileSkeleton />;
   }
 
-  return <Profile />;
+  return state?.user ? <Profile /> : <ProfileSkeleton />;
 };
 
 export default ProfilePage;
