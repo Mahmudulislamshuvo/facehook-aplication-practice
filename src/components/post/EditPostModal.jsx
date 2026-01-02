@@ -58,7 +58,11 @@ const EditPostModal = ({ post, onClose }) => {
   };
 
   return (
-    <AppModal isOpen={modalIsOpen} onClose={onClose} title="Edit Post">
+    <AppModal
+      isOpen={modalIsOpen}
+      onClose={onClose}
+      title="Edit Post"
+    >
       <ModalNewPost
         title="Edit Post"
         register={register}
