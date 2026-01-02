@@ -25,6 +25,12 @@ const postReducer = (state, action) => {
         error: action.error,
       };
 
+    case actions.post.NEW_POST_ADDED:
+      return {
+        ...state,
+        posts: [...state.posts, action.data],
+      };
+
     default: {
       return state;
     }
