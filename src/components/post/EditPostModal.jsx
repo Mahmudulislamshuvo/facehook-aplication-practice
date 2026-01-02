@@ -12,7 +12,10 @@ const EditPostModal = ({ post, onClose }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
-    setModalIsOpen(true);
+    const timeoutId = setTimeout(() => {
+      setModalIsOpen(true);
+    }, 0);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const {
