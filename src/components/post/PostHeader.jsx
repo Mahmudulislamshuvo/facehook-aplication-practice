@@ -9,6 +9,7 @@ import { getTimeFromNow } from "../../utils/getTimeFromNow";
 import useAxios from "../../hooks/useAxios";
 import { usePost } from "../../hooks/usePost";
 import { actions } from "../../actions";
+import { useProfile } from "../../hooks/useProfile";
 
 const PostHeader = ({ post, onEdit }) => {
   const { auth } = useAuth();
@@ -16,6 +17,8 @@ const PostHeader = ({ post, onEdit }) => {
   const { avatarURL } = useAvatar(post);
   const { api } = useAxios();
   const { dispatch } = usePost();
+
+  const { dispatch: profileDispatch } = useProfile();
 
   const isMe = post?.author?.id === auth?.user?.id;
 
@@ -27,6 +30,11 @@ const PostHeader = ({ post, onEdit }) => {
     if (response.status === 200) {
       dispatch({
         type: actions.post.POST_DELETED,
+        data: { id: post.id },
+      });
+
+      profileDispatch({
+        type: actions.profile.POST_DELETED,
         data: { id: post.id },
       });
     }

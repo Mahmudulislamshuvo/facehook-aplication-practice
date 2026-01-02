@@ -54,6 +54,13 @@ const profileReducer = (state, action) => {
         ),
       };
 
+    case actions.profile.POST_DELETED:
+      return {
+        ...state,
+        loading: false,
+        posts: state.posts.filter((post) => post.id !== action.data.id),
+      };
+
     default:
       return state;
   }
