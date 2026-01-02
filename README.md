@@ -1,6 +1,7 @@
 # Facehook
 
 <video src="./public/Recording.mp4" width="100%" controls></video>
+[ভিডিওটি দেখতে এখানে ক্লিক করুন](./public/Recording.mp4)
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
@@ -13,19 +14,19 @@ Facehook is a modern social media feed application built to provide a seamless u
 
 ## Tech Stack
 
-| Component | Technologies |
-| :--- | :--- |
+| Component    | Technologies                                                |
+| :----------- | :---------------------------------------------------------- |
 | **Frontend** | React, Vite, Tailwind CSS, Axios, Context API, React Router |
-| **Backend** | Node.js, Express, JSON Server, JSON Server Auth, Multer |
+| **Backend**  | Node.js, Express, JSON Server, JSON Server Auth, Multer     |
 
 ## Key Features
 
-*   **User Authentication:** Secure Login and Registration with token-based auth (JWT) and refresh token support.
-*   **Dynamic Feed:** Real-time display of user posts.
-*   **Create & Manage Posts:** Users can create new posts, edit existing ones, and delete them.
-*   **Rich Interactions:** Like and comment on posts to engage with the community.
-*   **Profile Management:** comprehensive user profiles with editable bio and avatar upload.
-*   **Responsive Design:** Fully responsive UI built with Tailwind CSS.
+- **User Authentication:** Secure Login and Registration with token-based auth (JWT) and refresh token support.
+- **Dynamic Feed:** Real-time display of user posts.
+- **Create & Manage Posts:** Users can create new posts, edit existing ones, and delete them.
+- **Rich Interactions:** Like and comment on posts to engage with the community.
+- **Profile Management:** comprehensive user profiles with editable bio and avatar upload.
+- **Responsive Design:** Fully responsive UI built with Tailwind CSS.
 
 ## Project Structure
 
@@ -56,8 +57,8 @@ Follow these steps to set up the project locally.
 
 ### Prerequisites
 
-*   **Node.js** (v16 or higher recommended)
-*   **npm** or **yarn**
+- **Node.js** (v16 or higher recommended)
+- **npm** or **yarn**
 
 ### Environment Variables
 
@@ -88,7 +89,7 @@ To ensure the application works correctly, **start the backend server first**.
     ```bash
     npm run dev
     ```
-    *The server will start at `http://localhost:3000`.*
+    _The server will start at `http://localhost:3000`._
 
 #### Step 2: Start the Frontend
 
@@ -105,15 +106,15 @@ To ensure the application works correctly, **start the backend server first**.
     ```bash
     npm run dev
     ```
-    *The application will open in your browser (usually at `http://localhost:5173`).*
+    _The application will open in your browser (usually at `http://localhost:5173`)._
 
 ## API Reference
 
 The application uses a custom backend running on port `3000`.
 
-*   **Base URL:** `http://localhost:3000`
-*   **Key Endpoints:**
-    *   `POST /auth/login` - User Login
-    *   `POST /auth/register` - User Registration
-    *   `GET /posts` - Fetch all posts
-    *   `GET /profile/:id` - Get user profile
+- **Base URL:** `http://localhost:3000`
+- **Key Endpoints:**
+  - `POST /auth/login` - User Login
+  - `POST /auth/register` - User Registration
+  - `GET /posts` - Fetch all posts
+  - `GET /profile/:id` - Get user profile
