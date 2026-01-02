@@ -5,6 +5,7 @@ import notification from "../assets/icons/notification.svg";
 import Logout from "./common/Logout";
 import { useAuth } from "../hooks/useAuth";
 import { useProfile } from "../hooks/useProfile";
+import { IoPersonSharp } from "react-icons/io5";
 
 const Navbar = () => {
   const { auth } = useAuth();
@@ -37,11 +38,15 @@ const Navbar = () => {
                 {user.firstName}
                 {""} {user.lastName}
               </span>
-              <img
-                className="h-8 w-8 lg:h-11 lg:w-11 rounded-full"
-                src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}`}
-                alt="avatar"
-              />
+              {!user.avatar ? (
+                <IoPersonSharp className="h-8 w-8  rounded-full" />
+              ) : (
+                <img
+                  className="h-8 w-8 lg:h-11 lg:w-11 rounded-full"
+                  src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}`}
+                  alt="avatar"
+                />
+              )}
             </Link>
           </div>
           {/* <!-- nav links ends --> */}

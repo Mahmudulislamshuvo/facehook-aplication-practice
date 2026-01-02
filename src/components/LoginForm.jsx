@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import axios from "axios";
+import { useState } from "react";
+import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -12,6 +14,8 @@ const LoginForm = () => {
     handleSubmit,
     setError,
   } = useForm();
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleFormSubmit = async (formData) => {
     try {
@@ -32,8 +36,6 @@ const LoginForm = () => {
           navigate("/");
         }
       }
-
-      console.log(response.data);
     } catch (error) {
       setError("root.random", {
         type: "random",
@@ -51,7 +53,7 @@ const LoginForm = () => {
           className="border-b border-[#3F3F3F] pb-10 lg:pb-15"
         >
           {/* <!-- email --> */}
-          <div className="form-control">
+          <div className="form-control ">
             <label className="auth-label" htmlFor="email">
               Email
             </label>
@@ -81,7 +83,7 @@ const LoginForm = () => {
             )}
           </div>
           {/* <!-- password --> */}
-          <div className="form-control">
+          <div className="form-control relative">
             <label className="auth-label" htmlFor="password">
               Password
             </label>
@@ -90,7 +92,7 @@ const LoginForm = () => {
                 errors.password ? "border-red-500" : ""
               }`}
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               {...register("password", {
                 required: "Password is required",
@@ -100,6 +102,16 @@ const LoginForm = () => {
                 },
               })}
             />
+            <div
+              className="absolute right-4 top-9 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <IoIosEyeOff className="text-green-500 h-6 w-6" />
+              ) : (
+                <IoIosEye className="text-green-500 h-6 w-6" />
+              )}
+            </div>
           </div>
           {/* error */}
           <div className="h-4 mb-2">
