@@ -24,18 +24,30 @@ const PostHeader = ({ post, onEdit }) => {
 
   const handlePostDelete = async (e, post) => {
     e.stopPropagation();
+    dispatch({ type: actions.post.DATA_FATCHING });
+    profileDispatch({ type: actions.profile.DATA_FATCHING });
+    try {
+      const response = await api.delete(`/posts/${post.id}`);
 
-    const response = await api.delete(`/posts/${post.id}`);
+      if (response.status === 200) {
+        dispatch({
+          type: actions.post.POST_DELETED,
+          data: { id: post.id },
+        });
 
-    if (response.status === 200) {
+        profileDispatch({
+          type: actions.profile.POST_DELETED,
+          data: { id: post.id },
+        });
+      }
+    } catch (error) {
       dispatch({
-        type: actions.post.POST_DELETED,
-        data: { id: post.id },
+        type: actions.post.DATA_FAIL,
+        error: error.message,
       });
-
       profileDispatch({
-        type: actions.profile.POST_DELETED,
-        data: { id: post.id },
+        type: actions.profile.DATA_FAIL,
+        error: error.message,
       });
     }
   };

@@ -11,11 +11,10 @@ const Bio = () => {
   const [editBioMode, setEditBioMode] = useState(false);
 
   const updateBiohandler = async () => {
-    dispatch({ type: actions.profile.PROFILE_DATA_FATCHING });
+    dispatch({ type: actions.profile.DATA_FATCHING });
 
     try {
       const response = await api.patch(`/profile/${state.user.id}`, { bio });
-      console.log(response);
 
       if (response.status === 200) {
         dispatch({
