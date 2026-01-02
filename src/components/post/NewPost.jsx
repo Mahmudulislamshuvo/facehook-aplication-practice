@@ -34,13 +34,13 @@ const NewPost = () => {
           <AppModal
             isOpen={open}
             onClose={() => setOpen(false)}
-            title="Create A New Post"
+            // title="Create A New Post"
           >
-            <ModalNewPost />
+            <ModalNewPost title="Create A New Post" />
 
             <button
               onClick={() => setOpen(false)}
-              className="mt-4 rounded bg-lwsGreen px-4 py-2 text-black"
+              className="mt-4 rounded bg-red-500 px-4 py-2 text-white"
             >
               Close
             </button>
