@@ -7,7 +7,7 @@ import timeIcon from "../../assets/icons/time.svg";
 import { useAvatar } from "../../hooks/useAvatar";
 import { getTimeFromNow } from "../../utils/getTimeFromNow";
 
-const PostHeader = ({ post }) => {
+const PostHeader = ({ post, onEdit }) => {
   // const { state } = useProfile();
   const [toggle, setToggle] = useState(false);
   const { avatarURL } = useAvatar(post);
@@ -42,7 +42,13 @@ const PostHeader = ({ post }) => {
 
           {toggle && (
             <div className="action-modal-container">
-              <button className="action-menu-item hover:text-lwsGreen">
+              <button
+                onClick={() => {
+                  setToggle(false);
+                  onEdit(post);
+                }}
+                className="action-menu-item hover:text-lwsGreen"
+              >
                 <img src={editIcon} alt="Edit" />
                 Edit
               </button>
