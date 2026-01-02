@@ -31,10 +31,14 @@ const NewPost = () => {
     dispatch({ type: actions.post.DATA_FATCHING });
 
     try {
-      const response = await api.post("/posts", {
-        content: data.content,
-        image: data.image?.[0] || null,
-      });
+      const formData = new FormData();
+      formData.append("content", data.content);
+
+      if (data.image && data.image[0]) {
+        formData.append("image", data.image[0]);
+      }
+
+      const response = await api.post("/posts", formData);
 
       if (response.status === 200) {
         dispatch({
