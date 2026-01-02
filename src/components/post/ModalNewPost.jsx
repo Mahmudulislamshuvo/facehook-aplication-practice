@@ -27,7 +27,7 @@ const ModalNewPost = ({
             <div className="mb-3 flex items-center justify-between gap-2 lg:mb-6 lg:gap-4">
               <div className="flex items-center gap-3">
                 <img
-                  className="max-w-10 max-h-10 rounded-full lg:max-h-14.5 lg:max-w-14.5"
+                  className="w-10 h-10 rounded-full lg:h-14.5 lg:w-14.5"
                   src={`${
                     import.meta.env.VITE_SERVER_BASE_URL
                   }/${userProfileImage}`}

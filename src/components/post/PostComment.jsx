@@ -39,7 +39,7 @@ const PostComments = ({ post }) => {
     <div>
       <div className="flex-center mb-3 gap-2 lg:gap-4">
         <img
-          className="max-w-7 max-h-7 rounded-full lg:max-h-8.5 lg:max-w-8.5"
+          className="w-7 h-7 rounded-full lg:h-8.5 lg:w-8.5"
           src={`${import.meta.env.VITE_SERVER_BASE_URL}/${userPofileImage}`}
           alt="avatar"
         />
