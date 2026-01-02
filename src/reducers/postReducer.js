@@ -28,6 +28,7 @@ const postReducer = (state, action) => {
     case actions.post.NEW_POST_ADDED:
       return {
         ...state,
+        loading: false,
         posts: [...state.posts, action.data],
       };
 

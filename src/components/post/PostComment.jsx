@@ -2,10 +2,12 @@ import { useState } from "react";
 import PostCommentList from "./PostCommentList";
 import { useAuth } from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
+import { useProfile } from "../../hooks/useProfile";
 
 const PostComments = ({ post }) => {
   const { auth } = useAuth();
   const { api } = useAxios();
+  const { state: profile } = useProfile();
   const [toggleComments, setToggleComments] = useState(false);
   const [allComments, setAllComments] = useState(post?.comments || []);
   const [commentValue, setCommentValue] = useState("");
@@ -31,12 +33,14 @@ const PostComments = ({ post }) => {
     }
   };
 
+  const userPofileImage = profile?.user?.avatar ?? auth?.user?.avatar;
+
   return (
     <div>
       <div className="flex-center mb-3 gap-2 lg:gap-4">
         <img
           className="max-w-7 max-h-7 rounded-full lg:max-h-8.5 lg:max-w-8.5"
-          src={`${import.meta.env.VITE_SERVER_BASE_URL}/${auth?.user?.avatar}`}
+          src={`${import.meta.env.VITE_SERVER_BASE_URL}/${userPofileImage}`}
           alt="avatar"
         />
 
