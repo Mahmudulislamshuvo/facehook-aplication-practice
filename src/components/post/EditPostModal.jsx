@@ -5,9 +5,11 @@ import useAxios from "../../hooks/useAxios";
 import { actions } from "../../actions";
 import AppModal from "../common/Modal";
 import ModalNewPost from "./ModalNewPost";
+import { useProfile } from "../../hooks/useProfile";
 
 const EditPostModal = ({ post, onClose, isOpen }) => {
   const { dispatch } = usePost();
+  const { dispatch: profileDispatch } = useProfile();
   const { api } = useAxios();
 
   const {
@@ -46,6 +48,11 @@ const EditPostModal = ({ post, onClose, isOpen }) => {
       if (response.status === 200) {
         dispatch({
           type: actions.post.DATA_EDITED,
+          data: response.data,
+        });
+        // 3. Update Profile State
+        profileDispatch({
+          type: actions.profile.POST_EDITED,
           data: response.data,
         });
         // সফল হলে মডাল বন্ধ হবে

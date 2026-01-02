@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useProfile } from "../../hooks/useProfile";
+import { useAuth } from "../../hooks/useAuth";
 import threeDotsIcon from "../../assets/icons/3dots.svg";
 import editIcon from "../../assets/icons/edit.svg";
 import deleteIcon from "../../assets/icons/delete.svg";
@@ -8,9 +8,11 @@ import { useAvatar } from "../../hooks/useAvatar";
 import { getTimeFromNow } from "../../utils/getTimeFromNow";
 
 const PostHeader = ({ post, onEdit }) => {
-  // const { state } = useProfile();
+  const { auth } = useAuth();
   const [toggle, setToggle] = useState(false);
   const { avatarURL } = useAvatar(post);
+
+  const isMe = post?.author?.id === auth?.user?.id;
 
   return (
     <>
@@ -34,31 +36,32 @@ const PostHeader = ({ post, onEdit }) => {
         </div>
 
         {/* Actions */}
+        {isMe && (
+          <div className="relative">
+            <button onClick={() => setToggle(!toggle)}>
+              <img src={threeDotsIcon} alt="actions" />
+            </button>
 
-        <div className="relative">
-          <button onClick={() => setToggle(!toggle)}>
-            <img src={threeDotsIcon} alt="actions" />
-          </button>
-
-          {toggle && (
-            <div className="action-modal-container">
-              <button
-                onClick={() => {
-                  setToggle(false);
-                  onEdit();
-                }}
-                className="action-menu-item hover:text-lwsGreen"
-              >
-                <img src={editIcon} alt="Edit" />
-                Edit
-              </button>
-              <button className="action-menu-item hover:text-red-500">
-                <img src={deleteIcon} alt="Delete" />
-                Delete
-              </button>
-            </div>
-          )}
-        </div>
+            {toggle && (
+              <div className="action-modal-container">
+                <button
+                  onClick={() => {
+                    setToggle(false);
+                    onEdit();
+                  }}
+                  className="action-menu-item hover:text-lwsGreen"
+                >
+                  <img src={editIcon} alt="Edit" />
+                  Edit
+                </button>
+                <button className="action-menu-item hover:text-red-500">
+                  <img src={deleteIcon} alt="Delete" />
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </header>
     </>
   );
