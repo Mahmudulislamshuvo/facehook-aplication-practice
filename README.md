@@ -1,7 +1,7 @@
 # Facehook
 
-[[<video src="./public/Recording.mp4" width="100%" controls></video>](https://github.com/user-attachments/assets/6c26fb63-8d39-43f6-a9f5-6ea87386f088)](https://github.com/user-attachments/assets/6c26fb63-8d39-43f6-a9f5-6ea87386f088)
-[ভিডিওটি দেখতে এখানে ক্লিক করুন](./public/Recording.mp4)
+(https://github.com/user-attachments/assets/6c26fb63-8d39-43f6-a9f5-6ea87386f088)
+
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
