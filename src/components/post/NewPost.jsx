@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import AppModal from "../common/Modal";
+import ModalNewPost from "./ModalNewPost";
 
 const NewPost = () => {
   const { auth } = useAuth();
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -20,10 +24,28 @@ const NewPost = () => {
               className="h-16 w-full rounded-md bg-lighterDark p-3 focus:outline-none sm:h-20 sm:p-6"
               name="post"
               id="post"
+              onClick={() => setOpen(true)}
+              readOnly={true}
               placeholder="What's on your mind?"
             ></textarea>
           </div>
         </div>
+        <>
+          <AppModal
+            isOpen={open}
+            onClose={() => setOpen(false)}
+            title="Create A New Post"
+          >
+            <ModalNewPost />
+
+            <button
+              onClick={() => setOpen(false)}
+              className="mt-4 rounded bg-lwsGreen px-4 py-2 text-black"
+            >
+              Close
+            </button>
+          </AppModal>
+        </>
       </div>
     </>
   );
