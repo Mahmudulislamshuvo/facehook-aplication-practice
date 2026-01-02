@@ -14,9 +14,12 @@ const PostCard = ({ post }) => {
       <PostBody poster={post?.image} content={post?.content} />
       <PostAction post={post} commentCount={post?.comments?.length} />
       <PostComments post={post} />
-      {showEditModal && (
-        <EditPostModal post={post} onClose={() => setShowEditModal(false)} />
-      )}
+
+      <EditPostModal
+        post={post}
+        isOpen={showEditModal}
+        onClose={() => setShowEditModal(false)}
+      />
     </article>
   );
 };

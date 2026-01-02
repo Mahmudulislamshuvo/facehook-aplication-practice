@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { usePost } from "../../hooks/usePost";
 import useAxios from "../../hooks/useAxios";
@@ -5,7 +6,7 @@ import { actions } from "../../actions";
 import AppModal from "../common/Modal";
 import ModalNewPost from "./ModalNewPost";
 
-const EditPostModal = ({ post, onClose }) => {
+const EditPostModal = ({ post, onClose, isOpen }) => {
   const { dispatch } = usePost();
   const { api } = useAxios();
 
@@ -13,12 +14,22 @@ const EditPostModal = ({ post, onClose }) => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm({
     defaultValues: {
       content: post?.content || "",
       image: null,
     },
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      reset({
+        content: post?.content || "",
+        image: null,
+      });
+    }
+  }, [isOpen, post, reset]);
 
   const handleEditPost = async (data) => {
     dispatch({ type: actions.post.DATA_FATCHING });
@@ -37,6 +48,7 @@ const EditPostModal = ({ post, onClose }) => {
           type: actions.post.DATA_EDITED,
           data: response.data,
         });
+        // সফল হলে মডাল বন্ধ হবে
         onClose();
       }
     } catch (error) {
@@ -49,7 +61,7 @@ const EditPostModal = ({ post, onClose }) => {
   };
 
   return (
-    <AppModal isOpen={true} onClose={onClose} title="Edit Post">
+    <AppModal isOpen={isOpen} onClose={onClose} title="Edit Post">
       <ModalNewPost
         title="Edit Post"
         register={register}

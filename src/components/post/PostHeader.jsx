@@ -45,7 +45,7 @@ const PostHeader = ({ post, onEdit }) => {
               <button
                 onClick={() => {
                   setToggle(false);
-                  onEdit(post);
+                  onEdit();
                 }}
                 className="action-menu-item hover:text-lwsGreen"
               >
