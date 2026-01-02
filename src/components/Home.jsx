@@ -1,14 +1,15 @@
-import { postReducer, initialState } from "../reducers/postReducer";
 import useAxios from "../hooks/useAxios";
-import { useEffect, useEffectEvent, useReducer } from "react";
+import { useEffect, useEffectEvent } from "react";
 import PostList from "./post/PostList";
 import { actions } from "../actions";
 import PostListSkeleton from "./skeleton/PostListSkeleton";
 import Error from "./common/Error";
+import { usePost } from "../hooks/usePost";
+import NewPost from "./post/NewPost";
 
 const Home = () => {
   const { api } = useAxios();
-  const [state, dispatch] = useReducer(postReducer, initialState);
+  const { state, dispatch } = usePost();
 
   const fetchPosts = useEffectEvent(async () => {
     dispatch({ type: actions.post.DATA_FATCHING });
@@ -41,6 +42,7 @@ const Home = () => {
 
   return (
     <div>
+      <NewPost />
       <PostList posts={state?.posts} />
     </div>
   );
